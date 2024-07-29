@@ -1,9 +1,34 @@
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { type IconProps } from '@expo/vector-icons/build/createIconSet';
-import { type ComponentProps } from 'react';
+import Octicons from '@expo/vector-icons/Octicons';
 
-export function TabBarIcon({ style, ...rest }: IconProps<ComponentProps<typeof Ionicons>['name']>) {
-  return <Ionicons size={28} style={[{ marginBottom: -3 }, style]} {...rest} />;
+
+type IconFamily = 'FontAwesome' | 'MaterialIcons' | 'Ionicons' | 'Octicons';
+
+interface IconComponentProps {
+  name: string;
+  family: IconFamily;
+  size?: number;
+  color?: string;
+  [key: string]: any;
 }
+
+const iconMapping: Record<IconFamily, React.ComponentType<any>> = {
+  FontAwesome,
+  MaterialIcons,
+  Ionicons,
+  Octicons
+};
+
+type IconProps = typeof FontAwesome | typeof MaterialIcons | typeof Ionicons | typeof Octicons;
+
+export function TabBarIcon({ name, family, size = 24, color, ...rest }: IconComponentProps) {
+  const IconComponent = iconMapping[family];
+  if (!IconComponent) {
+    console.warn(`Icon family "${family}" is not recognized.`);
+    return null;
+  }
+  return <IconComponent name={name} size={size} color={color} {...rest as IconProps} />;
+}
+

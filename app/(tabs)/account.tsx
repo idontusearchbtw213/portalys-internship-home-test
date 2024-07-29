@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native'
 export default function favourits() {
   return (
     <View style={styles.container}>
-        <Text style={styles.text}>Welcome</Text>
+        <Text style={styles.text}>Account</Text>
     </View>
   )
 }
