@@ -24,6 +24,7 @@ export const Colors = {
     tabIconSelected: tintColorDark,
   },
   shared: {
-    red: "#ff0000"
+    red: "#ff0000",
+    gray: "rgba(255, 255, 255, 0.2)"
   }
 };
