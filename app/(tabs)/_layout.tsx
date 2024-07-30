@@ -3,6 +3,7 @@ import React from 'react';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import FavouritsTab from '@/components/icons/FavouritsTab';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -15,7 +16,9 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: tabBarBackgroundColor
+          backgroundColor: tabBarBackgroundColor,
+          padding: 10,
+          borderColor: "transparent"
         }
       }}>
       <Tabs.Screen
@@ -41,7 +44,7 @@ export default function TabLayout() {
         options={{
           title: '',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon family='FontAwesome' name='asterisk'  color={focused ? iconColor : color} />
+            <TabBarIcon icon={<FavouritsTab color={focused ? iconColor : color}/>} family='FontAwesome' name='asterisk'  color={focused ? iconColor : color} />
           ),
         }}
       />
